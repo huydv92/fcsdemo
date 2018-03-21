@@ -7,6 +7,7 @@ import {
 
 import { connect } from 'react-redux';
 import { addMovieAction, fetchMoviesAction, fetchSuccessAction, fetchFailedAction } from '../actions';
+import { Actions } from 'react-native-router-flux';
 
 class MovieComponent extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class MovieComponent extends Component {
                         placeholder='Release year'
                     />
                 </View>
-                <View style={{ height: 70, flexDirection: 'row', backgroundColor: 'green' }}>
+                <View style={{ height: 70, backgroundColor: 'green' }}>
                     <View style={{ backgroundColor: 'green' }}>
                         <TouchableOpacity
                             onPress={() => {
@@ -47,6 +48,14 @@ class MovieComponent extends Component {
                         <TouchableOpacity
                             onPress={() => {
 
+                            }}>
+                            <Text> Add Movie</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ backgroundColor: 'yellow' }}>
+                        <TouchableOpacity
+                            onPress={() => {
+                                Actions.MovieComponent()
                             }}>
                             <Text> Add Movie</Text>
                         </TouchableOpacity>
