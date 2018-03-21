@@ -1,0 +1,3 @@
+rootProject.name = 'FCS'
+
+include ':app'
