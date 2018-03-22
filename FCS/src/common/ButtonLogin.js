@@ -4,7 +4,7 @@ import { Button, Thumbnail, Label } from 'native-base';
 
 const ButtonLogin = (props) => {
     return (
-        <Button transparent style={styles.btnLogin}>
+        <Button transparent style={styles.btnLogin} onPress = {props.onPress}>
             <Thumbnail style={styles.btnLogin} square source={require('../images/button_login.png')} />
             <Label style={{ position: 'absolute' }}>{props.title}</Label>
         </Button>

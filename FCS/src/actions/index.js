@@ -1,10 +1,11 @@
 
-import { ADD_MOVIE, FETCH_MOVIES, FETCH_SUCCEEDED, FETCH_FAILED } from './actionTypes';
+import { ADD_MOVIE, LOGIN, FETCH_SUCCEEDED, FETCH_FAILED } from './actionTypes';
 
-export const fetchMoviesAction = (sort) => {
+export const LoginAction = (username, password) => {
     return {
-        type: FETCH_MOVIES,
-        sort
+        type: LOGIN,
+        username,
+        password
     }
 }
 

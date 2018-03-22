@@ -6,7 +6,7 @@ import { Api } from '../api/Api';
 
 function* fetchMovies() {
     try {
-        const receivedMovies = yield Api.getMoviesFromApi();   
+        const receivedMovies = yield Api.getLoginFromApi();   
         yield put({ type: FETCH_SUCCEEDED, receivedMovies: receivedMovies });     
     } catch (error) {        
         yield put({ type: FETCH_FAILED, error });

@@ -1,9 +1,8 @@
 
 import { combineReducers } from 'redux';
-import movieReducers from './movieReducers';
+import loginReducers from './loginReducers';
 
 const allReducers = combineReducers({
-    movieReducers,
-    //you can add more reducers here, separated by , !
+    loginReducers,
 });
 export default allReducers;

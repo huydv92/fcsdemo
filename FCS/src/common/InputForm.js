@@ -3,11 +3,15 @@ import { StyleSheet } from 'react-native'
 import { Item, Input, Form, Label } from 'native-base';
 
 const InputForm = (props) => {
+    const { onChangeText, value, placeholder, labelName, secureTextEntry } = props;
     return (
         <Form style={styles.formStyle}>
-            <Label>{props.labelName}</Label>
+            <Label>{labelName}</Label>
             <Item regular style={styles.itemStyle} >
-                <Input placeholder = {props.placeholder} />
+                <Input style={value ? { paddingBottom: 10 } : null} placeholder={placeholder}
+                    onChangeText={onChangeText} value={value} secureTextEntry={secureTextEntry} 
+                    autocorrect={false} autoCapitalize = 'none'
+                    />
             </Item>
         </Form>
     )
@@ -22,7 +26,7 @@ const styles = {
     itemStyle: {
         height: 35,
         marginTop: 5,
-        backgroundColor:'white'
+        backgroundColor: 'white'
     }
 }
 
