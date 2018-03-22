@@ -5,13 +5,12 @@ import { put, takeLatest } from 'redux-saga/effects';
 import { Api } from '../api/Api';
 
 function* fetchLoginAPIFromWS(action) {
-    const {username, password} = action;
-    try {
-        const receivedLogin = yield Api.getLoginFromApi(username, password);   
-        console.log('response:', receivedLogin)
-        // yield put({ type: LOGIN_SUCCEEDED, receivedMovies: receivedLogin });     
-    } catch (error) {        
-        yield put({ type: LOGIN_FAILED, error });
+    const { username, password } = action;
+    const receivedLogin = yield Api.getLoginFromApi(username, password);
+    if (receivedLogin) {
+        yield put({ type: LOGIN_SUCCEEDED, payload: receivedLogin });
+    } else {
+        yield put({ type: LOGIN_FAILED, payload: username });
     }
 }
 export function* login() {

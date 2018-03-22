@@ -7,9 +7,9 @@ import { LOGIN_FAILED, LOGIN_SUCCEEDED } from '../actions/actionTypes';
 const loginReducers = (state = INITIAL, action) => {
     switch (action.type) {
         case LOGIN_SUCCEEDED:
-            return { ...state, username: action.payload, auth: true };
+            return { ...state, username: action.payload.username, auth: true };
         case LOGIN_FAILED:
-            return [];
+            return { ...state, username: action.payload, auth: false };
         default:
             return state;
     }

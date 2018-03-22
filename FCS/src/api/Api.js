@@ -6,6 +6,7 @@ async function getLoginFromApi(username, password) {
             urlGetMovies + 'GetLogin?username=' + username + '&password=' + password
         );
         let responseJson = await response.json();
+        console.log('',responseJson)
         return responseJson[0];
     } catch (error) {
         console.error(error);

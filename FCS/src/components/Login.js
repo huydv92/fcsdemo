@@ -4,30 +4,63 @@ import { Actions } from 'react-native-router-flux';
 import { InputForm, ButtonArrow, FooterLogin, ButtonLogin, RememberMe } from '../common'
 import { connect } from 'react-redux';
 import { LoginAction } from '../actions';
+import { Alert } from 'react-native';
+import HomeView from './HomeView';
 class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: null,
-            password: null
+            username: '',
+            password: ''
         }
     }
     pressLogin() {
-        console.log('ok')
         this.props.pressLoginButton(this.state.username, this.state.password)
     }
+    invalidUserNamePassword() {
+        Alert.alert(
+            'Invalid',
+            'Wrong username or password',
+            [
+                { text: 'OK', onPress: () => console.log('OK Pressed') },
+            ],
+            { cancelable: false }
+        )
+    }
+    invalidUserNamePasswordEmtpy() {
+        Alert.alert(
+            'Invalid',
+            'Username or password is empty',
+            [
+                { text: 'OK', onPress: () => console.log('OK Pressed') },
+            ],
+            { cancelable: false }
+        )
+    }
+    componentWillReceiveProps(nextProps) {
+        const { auth, username } = nextProps.auth
+        if (auth) {
+            Actions.HomeView()
+        } else if (username !== '' && !auth) {
+            this.invalidUserNamePassword()
+        } else if (username === '' && !auth) {
+            this.invalidUserNamePasswordEmtpy()
+        }
+
+    }
     render() {
+
         return (
             <Container style={{ flex: 1 }} >
                 <View style={styles.ContentStyle}>
                     <Thumbnail style={styles.Thumbnail} large square source={require('../images/m2talk_icon_2.png')} />
                     <InputForm placeholder="User Name" labelName="User Name"
-                        onChangeText={text => this.setState({username: text})} value={this.state.username} />
+                        onChangeText={text => this.setState({ username: text })} value={this.state.username} />
                     <InputForm placeholder="PassWord" labelName="Password" secureTextEntry
                         onChangeText={password => this.setState({ password })} value={this.state.password} />
                     <ButtonArrow labelName="Language" titleMid="English" leftHide />
                     <RememberMe />
-                    <ButtonLogin onPress = {() => this.pressLogin()} title="Login" />
+                    <ButtonLogin onPress={() => this.pressLogin()} title="Login" />
                 </View>
                 <Footer style={styles.Footer} >
                     <FooterLogin />
@@ -68,7 +101,7 @@ const styles = ({
 })
 const mapStateToProps = (state) => {
     return {
-       
+        auth: state.auth
     }
 };
 
